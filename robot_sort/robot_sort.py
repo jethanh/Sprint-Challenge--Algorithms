@@ -92,12 +92,36 @@ class SortingRobot:
         """
         return self._light == "ON"
 
+        """ are the light methods red herrings?
+         not sure how they would be used. 
+         Perhaps in a different sorting algorithm. """
+
     def sort(self):
-        """
-        Sort the robot's list.
-        """
-        # Fill this out
-        pass
+        while True:
+            while True:
+                if self.can_move_right() == False:
+                    break
+                self.swap_item()
+                self.move_right()
+                if self.compare_item() <= -1:
+                    self.swap_item()
+                if self.can_move_right() == False:
+                    self.swap_item()
+                    break
+            if self.compare_item() == None and self.can_move_right() == False:
+                break
+
+            while True:
+                self.move_left()
+                if self.compare_item() == None:
+                    self.swap_item()
+                    break
+
+                if self.compare_item() > 0:
+                    self.swap_item()
+
+            if self.move_right() == False:
+                break
 
 
 if __name__ == "__main__":
